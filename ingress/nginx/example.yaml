@@ -28,6 +28,7 @@ kind: Service
 metadata:
   name: example
 spec:
+  type: NodePort
   selector:
     app: example
   ports:
@@ -39,9 +40,6 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ingress-example
-  annotations:
-    # use the shared ingress-nginx
-    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
   - host: myservice.telliott.io

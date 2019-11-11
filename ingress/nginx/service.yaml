@@ -9,6 +9,8 @@ metadata:
 spec:
   externalTrafficPolicy: Local
   type: LoadBalancer
+  loadBalancerIP: "35.184.179.115"
+  externalTrafficPolicy: "Local"
   selector:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
@@ -19,5 +21,3 @@ spec:
     - name: https
       port: 443
       targetPort: https
-
----
