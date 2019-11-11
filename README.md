@@ -2,13 +2,11 @@
 
 ## Setting Up
 
-### Google Cloud Credentials
+### Service Account
 
-Before running `terraform`, you need your Google Cloud credentials in the file _gcloud_credentials.json_.
+Before running `terraform`, you need a Service Account.
 
-You can create this file with the `gcloud` tool:
-
-`$ gcloud`
+Create an account with "Owner" permissions and download the credentials as JSON into the file _gcloud_credentials.json_.
 
 ### Cluster Credentials
 

@@ -1,7 +1,5 @@
 #####################################################################
 # Variables
 #####################################################################
-variable username {
-    default = "admin"
-}
-variable password {}
+variable "host" {}
+variable cluster_ca_certificate {}
