@@ -14,11 +14,11 @@ module "gke" {
   token = "${var.token}"
 }
 
-module "ingress" {
-  source   = "./ingress/nginx"
-  host     = "${module.gke.host}"
+# module "ingress" {
+#   source   = "./ingress/nginx"
+#   host     = "${module.gke.host}"
 
-  cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
+#   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
 
-  token = "${var.token}"
-}
+#   token = "${var.token}"
+# }
