@@ -10,7 +10,7 @@ provider "kubernetes" {
 }
 
 provider "google" {
-  credentials = "${file("gcloud-credentials.json")}"
+  access_token = "${var.token}"
   project     = "telliott-io"
   region      = "us-central1"
   zone        = "us-central1-c"
