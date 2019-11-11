@@ -14,5 +14,8 @@ ingress: kubeauth
 	kubectl apply -f ingress/nginx
 	echo "Ingress configured at: $(shell cat gke/ipaddress.txt)"
 
+test:
+	curl -H 'Host: myservice.telliott.io' http://$(shell cat gke/ipaddress.txt)/info
+
 destroy:
 	terraform destroy --auto-approve
