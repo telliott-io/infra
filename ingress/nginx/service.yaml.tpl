@@ -9,7 +9,7 @@ metadata:
 spec:
   externalTrafficPolicy: Local
   type: LoadBalancer
-  loadBalancerIP: "35.232.146.252"
+  loadBalancerIP: "IP_ADDRESS"
   externalTrafficPolicy: "Local"
   selector:
     app.kubernetes.io/name: ingress-nginx
