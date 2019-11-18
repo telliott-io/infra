@@ -2,6 +2,7 @@ all: cluster ingress
 
 cloudauth:
 	echo "token = \"`gcloud auth application-default print-access-token`\"" > terraform.tfvars
+	cat cloudflare.tfvars >> terraform.tfvars
 
 cluster: cloudauth
 	terraform apply --auto-approve
