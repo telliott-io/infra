@@ -13,3 +13,11 @@ resource "cloudflare_record" "blogarchive" {
   type    = "CNAME"
   ttl     = 1
 }
+
+resource "cloudflare_record" "front" {
+  zone_id = "${var.cloudflare_zone_id}"
+  name    = "front"
+  value   = "ingress.telliott.io"
+  type    = "CNAME"
+  ttl     = 1
+}
