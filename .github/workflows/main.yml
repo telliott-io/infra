@@ -1,14 +1,28 @@
-on: [push]
-
+name: 'Terraform GitHub Actions'
+on:
+  - push
 jobs:
-  hello_world_job:
+  terraform:
+    name: 'Terraform'
     runs-on: ubuntu-latest
-    name: Deploying a Terraform Plan
     steps:
-    # To use this repository's private action, you must check out the repository
-    - name: Checkout
-      uses: actions/checkout@v1
-    - uses: ./actions/apply # Uses an action in the root directory
-    - name: Apply Terraform Plan
-      id: Apply
-      uses: telliott-io/infra@latest
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Terraform Init'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: 'init'
+          tf_actions_comment: "false"
+      - name: 'Terraform Validate'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: 'validate'
+          tf_actions_comment: "false"
+      - name: 'Terraform Plan'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: 'plan'
+          tf_actions_comment: "false"

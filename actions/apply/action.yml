@@ -1,9 +1,0 @@
-# action.yml
-name: 'Apply'
-description: 'Apply the infrastructure configuration'
-runs:
-  using: 'docker'
-  image: 'docker://hashicorp/terraform:0.12.16'
-  args:
-    - 'apply'
-    - '--auto-approve'
