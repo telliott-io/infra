@@ -1,9 +1,9 @@
-name: 'Deploy'
+name: 'Deployment'
 on:
   - deployment
 jobs:
-  deployment:
-    name: 'Deploy'
+  deploy:
+    name: 'Deployment'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
