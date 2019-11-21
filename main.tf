@@ -14,8 +14,6 @@ variable cloudflare_zone_id {}
 #####################################################################
 module "gke" {
   source   = "./gke"
-
-  token = "${var.token}"
 }
 
 module "dns" {
