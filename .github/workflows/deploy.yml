@@ -1,0 +1,30 @@
+name: 'Deploy'
+on:
+  - deployment
+jobs:
+  deployment:
+    name: 'Deploy'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Save Credentials'
+        run: ./.github/scripts/save_gcloud_credentials.sh
+        env:
+          GCLOUD_CREDENTIALS_BASE64: ${{ secrets.GCloudCredentialsBase64 }}
+      - name: 'Terraform Init'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: 'init'
+          tf_actions_comment: "false"
+     - name: 'Terraform apply'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: 'apply'
+          tf_actions_comment: "false"
+        env:
+          TF_VAR_cloudflare_email: ${{ secrets.CloudflareEmail }}
+          TF_VAR_cloudflare_api_key:  ${{ secrets.CloudflareApiKey }}
+          TF_VAR_cloudflare_zone_id:  ${{ secrets.CloudflareZoneId }}

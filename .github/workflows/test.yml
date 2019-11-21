@@ -1,9 +1,9 @@
-name: 'Deploy'
+name: 'Test'
 on:
   - push
 jobs:
-  deployment:
-    name: 'Deploy'
+  test:
+    name: 'Test'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -29,16 +29,6 @@ jobs:
         with:
           tf_actions_version: 0.12.13
           tf_actions_subcommand: 'plan'
-          tf_actions_comment: "false"
-        env:
-          TF_VAR_cloudflare_email: ${{ secrets.CloudflareEmail }}
-          TF_VAR_cloudflare_api_key:  ${{ secrets.CloudflareApiKey }}
-          TF_VAR_cloudflare_zone_id:  ${{ secrets.CloudflareZoneId }}
-      - name: 'Terraform apply'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.12.13
-          tf_actions_subcommand: 'apply'
           tf_actions_comment: "false"
         env:
           TF_VAR_cloudflare_email: ${{ secrets.CloudflareEmail }}
