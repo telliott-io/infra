@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo $GCLOUD_CREDENTIALS > gcloud-credentials.json
+echo $GCLOUD_CREDENTIALS_BASE64 | base64 --decode > gcloud-credentials.json

@@ -11,7 +11,7 @@ jobs:
       - name: 'Save Credentials'
         run: ./.github/scripts/save_gcloud_credentials.sh
         env:
-          GCLOUD_CREDENTIALS: ${{ secrets.GCLOUD_CREDENTIALS }}
+          GCLOUD_CREDENTIALS_BASE64: ${{ secrets.GCloudCredentialsBase64 }}
       - name: 'Terraform Init'
         uses: hashicorp/terraform-github-actions@master
         with:
