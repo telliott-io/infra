@@ -1,6 +1,8 @@
 name: 'Deployment'
 on:
-  - deployment
+  push:
+      branches:    
+        - master
 jobs:
   deploy:
     name: 'Deployment'

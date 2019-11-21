@@ -1,6 +1,9 @@
 name: 'Test'
 on:
-  - push
+  pull_request:
+  push:
+      branches-ignore:    
+        - master
 jobs:
   test:
     name: 'Test'
