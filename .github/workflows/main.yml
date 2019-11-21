@@ -9,7 +9,6 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@master
       - name: 'Save Credentials'
-        uses: actions/checkout@master
         run: ./.github/scripts/save_gcloud_credentials.sh
         env:
           GCLOUD_CREDENTIALS: ${{ secrets.GCLOUD_CREDENTIALS }}
