@@ -1,0 +1,14 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: Deploying a Terraform Plan
+    steps:
+    # To use this repository's private action, you must check out the repository
+    - name: Checkout
+      uses: actions/checkout@v1
+    - uses: ./actions/apply # Uses an action in the root directory
+    - name: Apply Terraform Plan
+      id: Apply
+      uses: telliott-io/infra@latest
