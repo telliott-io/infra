@@ -30,3 +30,7 @@ jobs:
           tf_actions_version: 0.12.13
           tf_actions_subcommand: 'plan'
           tf_actions_comment: "false"
+        env:
+          TF_VAR_cloudflare_email: ${{ secrets.CloudflareEmail }}
+          TF_VAR_cloudflare_api_key:  ${{ secrets.CloudflareApiKey }}
+          TF_VAR_cloudflare_zone_id:  ${{ secrets.CloudflareZoneId }}
