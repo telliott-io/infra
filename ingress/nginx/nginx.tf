@@ -317,6 +317,7 @@ resource "kubernetes_deployment" "nginx_ingress_controller" {
         }
 
         service_account_name = "nginx-ingress-serviceaccount"
+        automount_service_account_token = true
       }
     }
   }
