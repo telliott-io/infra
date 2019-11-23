@@ -30,6 +30,7 @@ resource "kubernetes_service" "ingress_nginx" {
     }
 
     type                    = "LoadBalancer"
+    load_balancer_ip = "${var.load_balancer_ip}"
     external_traffic_policy = "Local"
   }
 }

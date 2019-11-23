@@ -21,11 +21,11 @@ module "dns" {
   ingress_address = "${module.gke.ingress_address}"
 }
 
-# module "ingress" {
-#   source   = "./ingress/nginx"
-#   host     = "${module.gke.host}"
+module "ingress" {
+  source   = "./ingress/nginx"
+  host     = "${module.gke.host}"
 
-#   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
+  cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
 
-#   token = "${var.token}"
-# }
+  load_balancer_ip = "${module.gke.ingress_address}"
+}
