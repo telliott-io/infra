@@ -28,6 +28,4 @@ module "ingress" {
   cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
 
   load_balancer_ip = "${module.gke.ingress_address}"
-
-  token = "${module.gke.token}"
 }
