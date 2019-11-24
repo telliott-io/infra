@@ -5,3 +5,6 @@ provider "google" {
 
   credentials = "${file("gcloud-credentials.json")}"
 }
+
+# Query my Terraform service account from GCP
+data "google_client_config" "current" {}
