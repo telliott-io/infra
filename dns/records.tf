@@ -21,3 +21,11 @@ resource "cloudflare_record" "front" {
   type    = "CNAME"
   ttl     = 1
 }
+
+resource "cloudflare_record" "jaeger" {
+  zone_id = "${var.cloudflare_zone_id}"
+  name    = "jaeger"
+  value   = "ingress.telliott.io"
+  type    = "CNAME"
+  ttl     = 1
+}

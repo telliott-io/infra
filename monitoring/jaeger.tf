@@ -116,7 +116,7 @@ resource "kubernetes_service" "jaeger_query" {
         "app.kubernetes.io/name" = "jaeger"
     }
 
-    type = "LoadBalancer"
+    type = "NodePort"
   }
 }
 
