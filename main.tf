@@ -29,3 +29,9 @@ module "ingress" {
 
   load_balancer_ip = "${module.gke.ingress_address}"
 }
+
+module "monitoring" {
+  source   = "./monitoring"
+  host     = "${module.gke.host}"
+  cluster_ca_certificate = "${module.gke.cluster_ca_certificate}"
+}
