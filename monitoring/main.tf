@@ -1,7 +1,11 @@
 module "jaeger" {
-  source   = "./jaeger"
+    source   = "./jaeger"
 }
 
 module "prometheus" {
-  source   = "./prometheus"
+    source   = "./prometheus"
+}
+
+module "grafana" {
+    source   = "./grafana"
 }
