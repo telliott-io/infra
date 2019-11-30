@@ -29,3 +29,11 @@ resource "cloudflare_record" "jaeger" {
   type    = "CNAME"
   ttl     = 1
 }
+
+resource "cloudflare_record" "prometheus" {
+  zone_id = "${var.cloudflare_zone_id}"
+  name    = "prometheus"
+  value   = "ingress.telliott.io"
+  type    = "CNAME"
+  ttl     = 1
+}

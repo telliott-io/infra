@@ -12,6 +12,7 @@ resource "kubernetes_service" "prometheus_service" {
 
   spec {
     port {
+      name = "http"
       port        = 8080
       target_port = "9090"
     }
