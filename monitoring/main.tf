@@ -1,0 +1,3 @@
+module "jaeger" {
+  source   = "./jaeger"
+}
