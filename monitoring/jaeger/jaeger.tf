@@ -1,6 +1,7 @@
 resource "kubernetes_deployment" "jaeger" {
   metadata {
     name = "jaeger"
+    namespace = "monitoring"
 
     labels = {
       "app.kubernetes.io/component" = "all-in-one"
@@ -93,6 +94,7 @@ resource "kubernetes_deployment" "jaeger" {
 resource "kubernetes_service" "jaeger_query" {
   metadata {
     name = "jaeger-query"
+    namespace = "monitoring"
 
     labels = {
 
@@ -123,6 +125,7 @@ resource "kubernetes_service" "jaeger_query" {
 resource "kubernetes_service" "jaeger_collector" {
   metadata {
     name = "jaeger-collector"
+    namespace = "monitoring"
 
     labels = {
 
@@ -167,6 +170,7 @@ resource "kubernetes_service" "jaeger_collector" {
 resource "kubernetes_service" "jaeger_agent" {
   metadata {
     name = "jaeger-agent"
+    namespace = "monitoring"
 
     labels = {
 
@@ -218,6 +222,7 @@ resource "kubernetes_service" "jaeger_agent" {
 resource "kubernetes_service" "zipkin" {
   metadata {
     name = "zipkin"
+    namespace = "monitoring"
 
     labels = {
 

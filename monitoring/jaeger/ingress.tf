@@ -1,6 +1,7 @@
 resource "kubernetes_ingress" "jaeger" {
   metadata {
     name = "jaeger"
+    namespace = "monitoring"
   }
 
   spec {
