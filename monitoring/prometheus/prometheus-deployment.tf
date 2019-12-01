@@ -53,6 +53,8 @@ resource "kubernetes_deployment" "prometheus_deployment" {
             mount_path = "/prometheus/"
           }
         }
+
+        automount_service_account_token = true
       }
     }
   }
