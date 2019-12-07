@@ -30,6 +30,13 @@ resource "kubernetes_deployment" "grafana" {
       }
 
       spec {
+        volume {
+          name="grafana-config"
+          config_map {
+            name = "grafana-config"
+          }
+        }
+
         container {
           name  = "grafana"
           image = "grafana/grafana:latest"
@@ -41,12 +48,17 @@ resource "kubernetes_deployment" "grafana" {
 
           env {
             name  = "GF_AUTH_ANONYMOUS_ENABLED"
-            value = "false"
+            value = "true"
           }
 
           env {
             name  = "GF_SECURITY_ADMIN_PASSWORD"
             value = "secret"
+          }
+
+          volume_mount {
+            name = "grafana-config"
+            mount_path = "/etc/grafana/provisioning/datasources"
           }
         }
       }

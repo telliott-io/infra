@@ -37,3 +37,12 @@ resource "cloudflare_record" "prometheus" {
   type    = "CNAME"
   ttl     = 1
 }
+
+
+resource "cloudflare_record" "grafana" {
+  zone_id = "${var.cloudflare_zone_id}"
+  name    = "grafana"
+  value   = "ingress.telliott.io"
+  type    = "CNAME"
+  ttl     = 1
+}
