@@ -4,6 +4,7 @@ resource "cloudflare_record" "ingress" {
   value   = "${var.ingress_address}"
   type    = "A"
   ttl     = 1
+  proxied = true
 }
 
 resource "cloudflare_record" "blogarchive" {
@@ -12,6 +13,7 @@ resource "cloudflare_record" "blogarchive" {
   value   = "ingress.telliott.io"
   type    = "CNAME"
   ttl     = 1
+  proxied = true
 }
 
 resource "cloudflare_record" "front" {
@@ -20,6 +22,7 @@ resource "cloudflare_record" "front" {
   value   = "ingress.telliott.io"
   type    = "CNAME"
   ttl     = 1
+  proxied = true
 }
 
 resource "cloudflare_record" "jaeger" {
@@ -28,6 +31,7 @@ resource "cloudflare_record" "jaeger" {
   value   = "ingress.telliott.io"
   type    = "CNAME"
   ttl     = 1
+  proxied = true
 }
 
 resource "cloudflare_record" "prometheus" {
@@ -36,6 +40,7 @@ resource "cloudflare_record" "prometheus" {
   value   = "ingress.telliott.io"
   type    = "CNAME"
   ttl     = 1
+  proxied = true
 }
 
 
@@ -45,4 +50,5 @@ resource "cloudflare_record" "grafana" {
   value   = "ingress.telliott.io"
   type    = "CNAME"
   ttl     = 1
+  proxied = true
 }
