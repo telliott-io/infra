@@ -7,23 +7,7 @@ resource "cloudflare_record" "ingress" {
   proxied = true
 }
 
-resource "cloudflare_record" "blogarchive" {
-  zone_id = "${var.cloudflare_zone_id}"
-  name    = "blogarchive"
-  value   = "ingress.telliott.io"
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
 
-resource "cloudflare_record" "front" {
-  zone_id = "${var.cloudflare_zone_id}"
-  name    = "front"
-  value   = "ingress.telliott.io"
-  type    = "CNAME"
-  ttl     = 1
-  proxied = true
-}
 
 resource "cloudflare_record" "jaeger" {
   zone_id = "${var.cloudflare_zone_id}"
