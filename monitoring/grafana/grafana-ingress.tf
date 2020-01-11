@@ -2,6 +2,9 @@ resource "kubernetes_ingress" "grafana" {
   metadata {
     name = "grafana"
     namespace = "monitoring"
+    annotations = {
+      "kubernetes.io/ingress.class" = "nginx"
+    }
   }
 
   spec {

@@ -2,6 +2,9 @@ resource "kubernetes_ingress" "prometheus" {
   metadata {
     name = "prometheus"
     namespace = "monitoring"
+    annotations = {
+      "kubernetes.io/ingress.class" = "nginx"
+    }
   }
 
   spec {
