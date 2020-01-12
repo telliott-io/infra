@@ -208,7 +208,7 @@ resource "kubernetes_deployment" "nginx_ingress_controller" {
   }
 
   spec {
-    replicas = 1
+    replicas = 3
 
     selector {
       match_labels = {
