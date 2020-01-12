@@ -4,12 +4,13 @@ resource "kubernetes_ingress" "prometheus" {
     namespace = "monitoring"
     annotations = {
       "kubernetes.io/ingress.class" = "nginx"
+      "nginx.ingress.kubernetes.io/server-alias" = "prometheus.*"
     }
   }
 
   spec {
     rule {
-      host = "prometheus.telliott.io"
+      host = "prometheus"
 
       http {
         path {

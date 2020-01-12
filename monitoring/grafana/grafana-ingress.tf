@@ -4,12 +4,13 @@ resource "kubernetes_ingress" "grafana" {
     namespace = "monitoring"
     annotations = {
       "kubernetes.io/ingress.class" = "nginx"
+      "nginx.ingress.kubernetes.io/server-alias" = "grafana.*"
     }
   }
 
   spec {
     rule {
-      host = "grafana.telliott.io"
+      host = "grafana"
 
       http {
         path {

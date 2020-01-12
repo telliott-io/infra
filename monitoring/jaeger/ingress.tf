@@ -4,12 +4,13 @@ resource "kubernetes_ingress" "jaeger" {
     namespace = "monitoring"
     annotations = {
       "kubernetes.io/ingress.class" = "nginx"
+      "nginx.ingress.kubernetes.io/server-alias" = "jaeger.*"
     }
   }
 
   spec {
     rule {
-      host = "jaeger.telliott.io"
+      host = "jaeger"
 
       http {
         path {
