@@ -7,12 +7,19 @@ resource "cloudflare_record" "ingress" {
   proxied = true
 }
 
-
+resource "cloudflare_record" "traefik" {
+  zone_id = "${var.cloudflare_zone_id}"
+  name    = "traefik"
+  value   = "${var.traefik_ingress_address}"
+  type    = "A"
+  ttl     = 1
+  proxied = true
+}
 
 resource "cloudflare_record" "jaeger" {
   zone_id = "${var.cloudflare_zone_id}"
   name    = "jaeger"
-  value   = "ingress.telliott.io"
+  value   = "ingress.${var.domain}"
   type    = "CNAME"
   ttl     = 1
   proxied = true
@@ -21,17 +28,16 @@ resource "cloudflare_record" "jaeger" {
 resource "cloudflare_record" "prometheus" {
   zone_id = "${var.cloudflare_zone_id}"
   name    = "prometheus"
-  value   = "ingress.telliott.io"
+  value   = "ingress.${var.domain}"
   type    = "CNAME"
   ttl     = 1
   proxied = true
 }
 
-
 resource "cloudflare_record" "grafana" {
   zone_id = "${var.cloudflare_zone_id}"
   name    = "grafana"
-  value   = "ingress.telliott.io"
+  value   = "ingress.${var.domain}"
   type    = "CNAME"
   ttl     = 1
   proxied = true
