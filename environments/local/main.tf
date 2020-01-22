@@ -11,3 +11,8 @@ provider "kubernetes" {
 module "monitoring" {
   source   = "../../monitoring"
 }
+
+module "ingress" {
+  source   = "../../ingress/nginx"
+  load_balancer_ip = "127.0.0.1"
+}
