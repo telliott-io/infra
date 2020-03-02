@@ -16,7 +16,19 @@ provider "kubernetes" {
   load_config_file = false
   host  = digitalocean_kubernetes_cluster.primary.endpoint
   token = digitalocean_kubernetes_cluster.primary.kube_config[0].token
-  cluster_ca_certificate = base64decode(
+  cluster_ca_certificate = digitalocean_kubernetes_cluster.primary.kube_config[0].cluster_ca_certificate
+}
+
+output "host" {
+  value = digitalocean_kubernetes_cluster.primary.endpoint
+}
+
+output "token" {
+  value = digitalocean_kubernetes_cluster.primary.kube_config[0].token
+}
+
+output "cluster_ca_certificate" {
+  value = base64decode(
     digitalocean_kubernetes_cluster.primary.kube_config[0].cluster_ca_certificate
   )
 }

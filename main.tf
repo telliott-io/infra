@@ -13,9 +13,8 @@ module "gke" {
   source   = "./gke"
 }
 
-
 module "do" {
-  source   = "./do"
+  source   = "./environments/do"
 }
 
 module "dns" {
