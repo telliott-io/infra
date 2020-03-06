@@ -12,7 +12,6 @@ provider "kubernetes" {
 
 module "ingress" {
   source   = "../../ingress/nginx"
-  load_balancer_ip = "${module.do.ingress_address}"
 }
 
 module "monitoring" {
@@ -20,5 +19,5 @@ module "monitoring" {
 }
 
 output "ingress_address" {
-    value = "${module.do.ingress_address}"
+    value = "${module.ingress.external_ip}"
 }

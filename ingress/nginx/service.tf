@@ -35,3 +35,13 @@ resource "kubernetes_service" "ingress_nginx" {
   }
 }
 
+data "kubernetes_service" "ingress_nginx" {
+ metadata {
+    name      = "ingress-nginx"
+    namespace = "ingress-nginx"
+ }
+}
+
+output external_ip {
+  value = data.kubernetes_service.ingress_nginx.load_balancer_ingress.0.ip
+}
