@@ -9,7 +9,7 @@ resource "cloudflare_record" "ingress" {
 
 resource "cloudflare_record" "do_ingress" {
   zone_id = "${var.cloudflare_zone_id}"
-  name    = "digitalocean"
+  name    = "ingress"
   value   = "${var.do_ingress_address}"
   type    = "A"
   ttl     = 1
