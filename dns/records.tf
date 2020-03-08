@@ -1,9 +1,7 @@
 resource "cloudflare_record" "ingress" {
-  for_each = var.ingress_ips
-
   zone_id = var.cloudflare_zone_id
   name    = "ingress"
-  value   = each.key
+  value   = var.ingress_ip
   type    = "A"
   ttl     = 1
   proxied = true
@@ -30,6 +28,15 @@ resource "cloudflare_record" "prometheus" {
 resource "cloudflare_record" "grafana" {
   zone_id = "${var.cloudflare_zone_id}"
   name    = "grafana"
+  value   = "ingress.${var.domain}"
+  type    = "CNAME"
+  ttl     = 1
+  proxied = true
+}
+
+resource "cloudflare_record" "emojicode" {
+  zone_id = "${var.cloudflare_zone_id}"
+  name    = "emojicode"
   value   = "ingress.${var.domain}"
   type    = "CNAME"
   ttl     = 1

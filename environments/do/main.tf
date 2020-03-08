@@ -1,5 +1,6 @@
 module "do" {
-  source   = "../../do"
+  source   = "../../kubernetes/do"
+  name = "primary"
 }
 
 provider "kubernetes" {
@@ -10,6 +11,13 @@ provider "kubernetes" {
   token = "${module.do.token}"
 }
 
+provider "helm" {
+  kubernetes {
+  host     = "${module.do.host}"
+  cluster_ca_certificate = "${module.do.cluster_ca_certificate}"
+  token = "${module.do.token}"
+  }
+}
 module "ingress" {
   source   = "../../ingress/nginx"
 }

@@ -40,6 +40,10 @@ data "kubernetes_service" "ingress_nginx" {
     name      = "ingress-nginx"
     namespace = "ingress-nginx"
  }
+
+ depends_on = [
+   kubernetes_service.ingress_nginx,
+ ]
 }
 
 output external_ip {
