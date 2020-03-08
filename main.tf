@@ -21,7 +21,6 @@ module "dns" {
   source = "./dns"
   cloudflare_zone_id = "${var.cloudflare_zone_id}"
   ingress_ips = [
-    module.gke.ingress_address,
     module.do.ingress_address,
   ]
   domain = "telliott.io"
