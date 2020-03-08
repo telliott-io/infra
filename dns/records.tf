@@ -1,16 +1,9 @@
 resource "cloudflare_record" "ingress" {
-  zone_id = "${var.cloudflare_zone_id}"
-  name    = "ingress"
-  value   = "${var.ingress_address}"
-  type    = "A"
-  ttl     = 1
-  proxied = true
-}
+  for_each = var.ingress_ips
 
-resource "cloudflare_record" "do_ingress" {
-  zone_id = "${var.cloudflare_zone_id}"
+  zone_id = var.cloudflare_zone_id
   name    = "ingress"
-  value   = "${var.do_ingress_address}"
+  value   = each.key
   type    = "A"
   ttl     = 1
   proxied = true

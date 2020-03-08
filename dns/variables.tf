@@ -1,4 +1,5 @@
 variable cloudflare_zone_id {}
-variable ingress_address {}
-variable do_ingress_address {}
+variable ingress_ips {
+    type = set(string)
+}
 variable domain {}
