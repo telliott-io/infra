@@ -9,9 +9,6 @@ variable "do_token" {} # Digital Ocean auth token
 #####################################################################
 # Modules
 #####################################################################
-module "gke" {
-  source   = "./gke"
-}
 
 module "do" {
   source   = "./environments/do"
@@ -24,13 +21,4 @@ module "dns" {
     module.do.ingress_address,
   ]
   domain = "telliott.io"
-}
-
-module "ingress" {
-  source   = "./ingress/nginx"
-  load_balancer_ip = "${module.gke.ingress_address}"
-}
-
-module "monitoring" {
-  source   = "./monitoring"
 }

@@ -1,23 +1,6 @@
 
 data "google_client_config" "current" {}
 
-provider "kubernetes" {
-  load_config_file = false
-  host     = "${module.gke.host}"
-
-  cluster_ca_certificate = "${base64decode(module.gke.cluster_ca_certificate)}"
-  token = "${data.google_client_config.current.access_token}"
-}
-
-provider "helm" {
-  kubernetes {
-    host     = "${module.gke.host}"
-    
-    cluster_ca_certificate = "${base64decode(module.gke.cluster_ca_certificate)}"
-    token = "${data.google_client_config.current.access_token}"
-  }
-}
-
 provider "google" {
   credentials = "${file("gcloud-credentials.json")}"
   project     = "telliott-io"
