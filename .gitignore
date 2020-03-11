@@ -1,6 +1,9 @@
 # Credential files
 gcloud-credentials.json
 
+# Act configuration
+.actrc
+
 # Terraform defaults from: 
 # https://github.com/github/gitignore/blob/master/Terraform.gitignore
 
