@@ -8,4 +8,5 @@ resource "helm_release" "bootstrap" {
   repository = data.helm_repository.bootstrap.metadata[0].name
   chart      = "bootstrap/bootstrap"
   namespace  = "argocd"
+  version    = "0.1.3"
 }
