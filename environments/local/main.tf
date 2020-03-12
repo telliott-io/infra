@@ -23,6 +23,6 @@ module "ingress" {
   load_balancer_ip = "127.0.0.1"
 }
 
-module "ci" {
-  source   = "../../ci/concourse"
+module "cd" {
+  source   = "../../cd/argocd"
 }

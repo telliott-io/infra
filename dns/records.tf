@@ -43,6 +43,15 @@ resource "cloudflare_record" "emojicode" {
   proxied = true
 }
 
+resource "cloudflare_record" "argocd" {
+  zone_id = "${var.cloudflare_zone_id}"
+  name    = "argocd"
+  value   = "ingress.${var.domain}"
+  type    = "CNAME"
+  ttl     = 1
+  proxied = true
+}
+
 resource "cloudflare_record" "root" {
   zone_id = "${var.cloudflare_zone_id}"
   name    = "@"

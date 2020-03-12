@@ -237,7 +237,15 @@ resource "kubernetes_deployment" "nginx_ingress_controller" {
         container {
           name  = "nginx-ingress-controller"
           image = "quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.26.1"
-          args  = ["/nginx-ingress-controller", "--configmap=$(POD_NAMESPACE)/nginx-configuration", "--tcp-services-configmap=$(POD_NAMESPACE)/tcp-services", "--udp-services-configmap=$(POD_NAMESPACE)/udp-services", "--publish-service=$(POD_NAMESPACE)/ingress-nginx", "--annotations-prefix=nginx.ingress.kubernetes.io"]
+          args  = [
+              "/nginx-ingress-controller", 
+              "--configmap=$(POD_NAMESPACE)/nginx-configuration", 
+              "--tcp-services-configmap=$(POD_NAMESPACE)/tcp-services", 
+              "--udp-services-configmap=$(POD_NAMESPACE)/udp-services", 
+              "--publish-service=$(POD_NAMESPACE)/ingress-nginx", 
+              "--annotations-prefix=nginx.ingress.kubernetes.io",
+              "--enable-ssl-passthrough"
+            ]
 
           port {
             name           = "http"
