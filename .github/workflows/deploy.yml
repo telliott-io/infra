@@ -31,3 +31,4 @@ jobs:
           TF_VAR_cloudflare_api_key:  ${{ secrets.CloudflareApiKey }}
           TF_VAR_cloudflare_zone_id:  ${{ secrets.CloudflareZoneId }}
           TF_VAR_do_token: ${{ secrets.DigitalOceanToken }}
+          TF_VAR_argocd_admin_password: ${{ secrets.ArgoCDAdminPassword }}

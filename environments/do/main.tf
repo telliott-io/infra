@@ -31,6 +31,9 @@ output "ingress_address" {
     value = "${module.ingress.external_ip}"
 }
 
+variable argocd_admin_password {}
+
 module "cd" {
   source   = "../../cd/argocd"
+  argocd_admin_password = var.argocd_admin_password
 }
