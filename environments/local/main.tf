@@ -24,5 +24,7 @@ module "ingress" {
 }
 
 module "cd" {
-  source   = "../../cd/argocd"
+  source = "../../cd/argocd"
+  # Password is 'password'
+  argocd_admin_password = "$2y$10$z26ZOTDMaIzxBMl9PLNGF.lNccsGWpY5bKymL.PF2UkIdN4nIelbG"
 }
