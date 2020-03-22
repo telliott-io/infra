@@ -15,9 +15,19 @@ resource "helm_release" "argocd" {
   chart      = "argo/argo-cd"
   namespace  = "argocd"
 
-  set {
+  set_sensitive {
     name  = "configs.secret.argocdServerAdminPassword"
     value = var.argocd_admin_password
+  }
+
+  set {
+    name = "server.rbacConfig.policy\\.default"
+    value = "role:readonly"
+  }
+
+  set_string {
+    name = "server.config.users\\.anonymous\\.enabled"
+    value = "true"
   }
 }
 
