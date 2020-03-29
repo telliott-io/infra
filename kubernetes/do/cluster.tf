@@ -14,14 +14,17 @@ resource "digitalocean_kubernetes_cluster" "primary" {
 
 output "host" {
   value = digitalocean_kubernetes_cluster.primary.endpoint
+  sensitive = true
 }
 
 output "token" {
   value = digitalocean_kubernetes_cluster.primary.kube_config[0].token
+  sensitive = true
 }
 
 output "cluster_ca_certificate" {
   value = base64decode(
     digitalocean_kubernetes_cluster.primary.kube_config[0].cluster_ca_certificate
   )
+  sensitive = true
 }
