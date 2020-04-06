@@ -1,4 +1,6 @@
 resource "kubernetes_ingress" "jaeger" {
+  depends_on = [null_resource.module_depends_on]
+  
   metadata {
     name = "jaeger"
     namespace = "monitoring"

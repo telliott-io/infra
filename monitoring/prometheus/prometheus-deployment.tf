@@ -1,4 +1,6 @@
 resource "kubernetes_deployment" "prometheus_deployment" {
+  depends_on = [kubernetes_config_map.prometheus_server_conf]
+
   metadata {
     name      = "prometheus-deployment"
     namespace = "monitoring"

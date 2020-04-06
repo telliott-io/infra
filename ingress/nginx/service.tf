@@ -1,4 +1,6 @@
 resource "kubernetes_service" "ingress_nginx" {
+  depends_on = [kubernetes_namespace.ingress_nginx]
+
   metadata {
     name      = "ingress-nginx"
     namespace = "ingress-nginx"
@@ -36,14 +38,14 @@ resource "kubernetes_service" "ingress_nginx" {
 }
 
 data "kubernetes_service" "ingress_nginx" {
- metadata {
+  metadata {
     name      = "ingress-nginx"
     namespace = "ingress-nginx"
- }
+  }
 
- depends_on = [
-   kubernetes_service.ingress_nginx,
- ]
+  depends_on = [
+    kubernetes_service.ingress_nginx,
+  ]
 }
 
 output external_ip {

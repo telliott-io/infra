@@ -10,6 +10,8 @@ resource "kubernetes_namespace" "ingress_nginx" {
 }
 
 resource "kubernetes_config_map" "nginx_configuration" {
+  depends_on = [kubernetes_namespace.ingress_nginx]
+
   metadata {
     name      = "nginx-configuration"
     namespace = "ingress-nginx"
@@ -22,6 +24,8 @@ resource "kubernetes_config_map" "nginx_configuration" {
 }
 
 resource "kubernetes_config_map" "tcp_services" {
+  depends_on = [kubernetes_namespace.ingress_nginx]
+
   metadata {
     name      = "tcp-services"
     namespace = "ingress-nginx"
@@ -35,6 +39,8 @@ resource "kubernetes_config_map" "tcp_services" {
 }
 
 resource "kubernetes_config_map" "udp_services" {
+  depends_on = [kubernetes_namespace.ingress_nginx]
+
   metadata {
     name      = "udp-services"
     namespace = "ingress-nginx"
@@ -48,6 +54,8 @@ resource "kubernetes_config_map" "udp_services" {
 }
 
 resource "kubernetes_service_account" "nginx_ingress_serviceaccount" {
+  depends_on = [kubernetes_namespace.ingress_nginx]
+
   metadata {
     name      = "nginx-ingress-serviceaccount"
     namespace = "ingress-nginx"
@@ -61,6 +69,8 @@ resource "kubernetes_service_account" "nginx_ingress_serviceaccount" {
 }
 
 resource "kubernetes_cluster_role" "nginx_ingress_clusterrole" {
+  depends_on = [kubernetes_namespace.ingress_nginx]
+
   metadata {
     name = "nginx-ingress-clusterrole"
 
@@ -109,6 +119,8 @@ resource "kubernetes_cluster_role" "nginx_ingress_clusterrole" {
 }
 
 resource "kubernetes_role" "nginx_ingress_role" {
+  depends_on = [kubernetes_namespace.ingress_nginx]
+
   metadata {
     name      = "nginx-ingress-role"
     namespace = "ingress-nginx"
@@ -147,6 +159,8 @@ resource "kubernetes_role" "nginx_ingress_role" {
 }
 
 resource "kubernetes_role_binding" "nginx_ingress_role_nisa_binding" {
+  depends_on = [kubernetes_namespace.ingress_nginx]
+
   metadata {
     name      = "nginx-ingress-role-nisa-binding"
     namespace = "ingress-nginx"
@@ -172,6 +186,8 @@ resource "kubernetes_role_binding" "nginx_ingress_role_nisa_binding" {
 }
 
 resource "kubernetes_cluster_role_binding" "nginx_ingress_clusterrole_nisa_binding" {
+  depends_on = [kubernetes_namespace.ingress_nginx]
+
   metadata {
     name = "nginx-ingress-clusterrole-nisa-binding"
 
@@ -196,6 +212,8 @@ resource "kubernetes_cluster_role_binding" "nginx_ingress_clusterrole_nisa_bindi
 }
 
 resource "kubernetes_deployment" "nginx_ingress_controller" {
+  depends_on = [kubernetes_namespace.ingress_nginx]
+
   metadata {
     name      = "nginx-ingress-controller"
     namespace = "ingress-nginx"

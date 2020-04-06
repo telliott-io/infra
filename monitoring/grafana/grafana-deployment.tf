@@ -1,4 +1,6 @@
 resource "kubernetes_deployment" "grafana" {
+  depends_on = [kubernetes_config_map.grafana_config]
+
   metadata {
     name      = "grafana"
     namespace = "monitoring"

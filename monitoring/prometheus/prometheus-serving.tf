@@ -1,4 +1,6 @@
 resource "kubernetes_service" "prometheus_service" {
+  depends_on = [null_resource.module_depends_on]
+
   metadata {
     name      = "prometheus-service"
     namespace = "monitoring"

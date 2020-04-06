@@ -1,4 +1,6 @@
 resource "kubernetes_ingress" "prometheus" {
+  depends_on = [null_resource.module_depends_on]
+  
   metadata {
     name = "prometheus"
     namespace = "monitoring"

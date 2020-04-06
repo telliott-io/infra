@@ -1,4 +1,6 @@
 resource "kubernetes_ingress" "argocd" {
+  depends_on = [helm_release.argocd]
+
   metadata {
     name      = "argocd-ingress"
     namespace = "argocd"

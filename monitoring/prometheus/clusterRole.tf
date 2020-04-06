@@ -1,4 +1,6 @@
 resource "kubernetes_cluster_role" "prometheus" {
+  depends_on = [null_resource.module_depends_on]
+
   metadata {
     name = "prometheus"
   }
@@ -22,6 +24,8 @@ resource "kubernetes_cluster_role" "prometheus" {
 }
 
 resource "kubernetes_cluster_role_binding" "prometheus" {
+  depends_on = [null_resource.module_depends_on]
+  
   metadata {
     name = "prometheus"
   }

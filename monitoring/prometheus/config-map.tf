@@ -1,4 +1,6 @@
 resource "kubernetes_config_map" "prometheus_server_conf" {
+  depends_on = [null_resource.module_depends_on]
+  
   metadata {
     name      = "prometheus-server-conf"
     namespace = "monitoring"

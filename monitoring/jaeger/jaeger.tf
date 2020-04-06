@@ -1,4 +1,6 @@
 resource "kubernetes_deployment" "jaeger" {
+  depends_on = [null_resource.module_depends_on]
+
   metadata {
     name = "jaeger"
     namespace = "monitoring"
@@ -92,6 +94,8 @@ resource "kubernetes_deployment" "jaeger" {
 }
 
 resource "kubernetes_service" "jaeger_query" {
+  depends_on = [null_resource.module_depends_on]
+  
   metadata {
     name = "jaeger-query"
     namespace = "monitoring"
@@ -123,6 +127,8 @@ resource "kubernetes_service" "jaeger_query" {
 }
 
 resource "kubernetes_service" "jaeger_collector" {
+  depends_on = [null_resource.module_depends_on]
+
   metadata {
     name = "jaeger-collector"
     namespace = "monitoring"
@@ -168,6 +174,8 @@ resource "kubernetes_service" "jaeger_collector" {
 }
 
 resource "kubernetes_service" "jaeger_agent" {
+  depends_on = [null_resource.module_depends_on]
+
   metadata {
     name = "jaeger-agent"
     namespace = "monitoring"
@@ -220,6 +228,8 @@ resource "kubernetes_service" "jaeger_agent" {
 }
 
 resource "kubernetes_service" "zipkin" {
+  depends_on = [null_resource.module_depends_on]
+  
   metadata {
     name = "zipkin"
     namespace = "monitoring"

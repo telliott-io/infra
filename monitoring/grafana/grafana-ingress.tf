@@ -1,4 +1,6 @@
 resource "kubernetes_ingress" "grafana" {
+  depends_on = [null_resource.module_depends_on]
+  
   metadata {
     name = "grafana"
     namespace = "monitoring"

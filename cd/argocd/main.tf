@@ -10,6 +10,8 @@ resource "kubernetes_namespace" "argocd" {
 }
 
 resource "helm_release" "argocd" {
+  depends_on = [kubernetes_namespace.argocd]
+
   name       = "argo"
   repository = data.helm_repository.argocd.metadata[0].name
   chart      = "argo/argo-cd"
