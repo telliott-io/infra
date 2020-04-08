@@ -31,4 +31,8 @@ module "cd" {
 
 module "consul" {
   source = "../../consul"
+  consul_address = "consul.localhost:80"
+  deployment_name = "local"
+
+  module_depends_on = ["${module.ingress.external_ip}"]
 }
