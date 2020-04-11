@@ -4,6 +4,7 @@ provider "consul" {
   datacenter = "dc1"
 }
 
+# Wait for the consul api endpoint to be ready
 resource "null_resource" "delay" {
   provisioner "local-exec" {
     command = "${path.module}/wait_for_url.sh ${var.consul_address}"
