@@ -14,9 +14,6 @@ provider "helm" {
 #####################################################################
 # Modules
 #####################################################################
-module "monitoring" {
-  source   = "../../monitoring"
-}
 
 module "ingress" {
   source   = "../../ingress/nginx"

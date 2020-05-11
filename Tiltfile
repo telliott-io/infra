@@ -8,27 +8,6 @@ local_resource(
 )
 
 local_resource(
-    "grafana", 
-    cmd="echo Grafana", 
-    serve_cmd="kubectl port-forward svc/grafana -n monitoring 3000:3000",
-    resource_deps=["infra"]
-)
-
-local_resource(
-    "jaeger", 
-    cmd="echo Jaeger", 
-    serve_cmd="kubectl port-forward svc/jaeger-query -n monitoring 8082:80",
-    resource_deps=["infra"]
-)
-
-local_resource(
-    "prometheus", 
-    cmd="echo Prometheus", 
-    serve_cmd="kubectl port-forward svc/prometheus-service -n monitoring 8083:8080",
-    resource_deps=["infra"]
-)
-
-local_resource(
     "consul", 
     cmd="echo Consul", 
     serve_cmd="kubectl port-forward service/consul -n consul 8500:8500",

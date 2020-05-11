@@ -23,10 +23,6 @@ module "ingress" {
   source   = "../../ingress/nginx"
 }
 
-module "monitoring" {
-  source   = "../../monitoring"
-}
-
 output "ingress_address" {
     value = "${module.ingress.external_ip}"
 }
