@@ -12,4 +12,19 @@ resource "helm_release" "consul" {
   name  = "consul"
   chart = "stable/consul"
   namespace  = "consul"
+
+  set {
+    name = "acl.enabled"
+    value = true
+  }
+
+  set {
+    name = "DatacenterName"
+    value = "telliott-io"
+  }
+
+  set {
+    name = "Replicas"
+    value = 3
+  }
 }

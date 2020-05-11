@@ -1,7 +1,7 @@
 # Configure the Consul provider
 provider "consul" {
   address    = "${var.consul_address}"
-  datacenter = "dc1"
+  datacenter = "telliott-io"
 }
 
 # Wait for the consul api endpoint to be ready
