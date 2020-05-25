@@ -9,7 +9,6 @@ resource "kubernetes_namespace" "argocd" {
   }
 
   timeouts {
-    create = "60m"
     delete = "2h"
   }
 }
