@@ -7,6 +7,11 @@ resource "kubernetes_namespace" "argocd" {
   metadata {
     name = "argocd"
   }
+
+  timeouts {
+    create = "60m"
+    delete = "2h"
+  }
 }
 
 resource "helm_release" "argocd" {
@@ -27,9 +32,10 @@ resource "helm_release" "argocd" {
     value = "role:readonly"
   }
 
-  set_string {
+  set {
     name = "server.config.users\\.anonymous\\.enabled"
     value = "true"
+    type = "string"
   }
 }
 

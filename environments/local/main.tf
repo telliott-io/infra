@@ -25,3 +25,9 @@ module "cd" {
   # Password is 'password'
   argocd_admin_password = "$2y$10$z26ZOTDMaIzxBMl9PLNGF.lNccsGWpY5bKymL.PF2UkIdN4nIelbG"
 }
+
+module "secrets" {
+  source = "../../secrets"
+  signing_cert = "${file("${path.module}/secretsigning/tls.crt")}"
+  signing_key = "${file("${path.module}/secretsigning/tls.key")}"
+}
