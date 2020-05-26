@@ -35,7 +35,13 @@ func TestSigning(t *testing.T) {
 		t.Skip()
 	}
 
-	tfdir := "testdata/tftest"
+	tfdir := "testdata"
+	workingDirCleanup, err := setupWorkingDir(tfdir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer workingDirCleanup()
+
 	kubeconfigfile := "kindconfig"
 	kindCleanup, err := createKindCluster(path.Join(tfdir, kubeconfigfile))
 	if err != nil {
@@ -45,7 +51,7 @@ func TestSigning(t *testing.T) {
 
 	terraformOptions := &terraform.Options{
 		// The path to where your Terraform code is located
-		TerraformDir: "testdata/tftest",
+		TerraformDir: tfdir,
 		Vars: map[string]interface{}{
 			"signing_cert": signingCert,
 			"signing_key":  signingKey,
@@ -109,13 +115,17 @@ func TestSigning(t *testing.T) {
 
 }
 
-func setupWorkingDir(path string) (func() error, error) {
-	err := os.Mkdir(path, os.ModeDir)
+func setupWorkingDir(p string) (func() error, error) {
+	err := os.Mkdir(p, os.ModePerm)
 	if err != nil {
 		return func() error { return nil }, err
 	}
+	err = ioutil.WriteFile(path.Join(p, "main.tf"), []byte(mainTF), 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
 	return func() error {
-		return os.RemoveAll(path)
+		return os.RemoveAll(p)
 	}, nil
 }
 
@@ -291,7 +301,7 @@ const secretValue = "bar"
 
 const mainTF = `
 module "secrets" {
-    source = "../../"
+    source = "../"
     signing_cert = var.signing_cert
     signing_key = var.signing_key
 }

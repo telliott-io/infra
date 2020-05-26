@@ -7,13 +7,6 @@ local_resource(
     resource_deps=["infra"]
 )
 
-local_resource(
-    "secret_test", 
-    cmd="secrets/secrettest.sh",
-    deps = ["secrets/secrettest.sh"], 
-    resource_deps=["infra"]
-)
-
 myos = str(local('echo $OSTYPE')).strip()
 tiltMode = "up"
 
