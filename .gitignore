@@ -1,6 +1,8 @@
 # Credential files
 gcloud-credentials.json
 
+.kube
+
 # Act configuration
 .actrc
 
