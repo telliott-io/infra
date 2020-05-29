@@ -28,6 +28,6 @@ module "cd" {
 
 module "secrets" {
   source = "../../secrets"
-  signing_cert = "${file("${path.module}/secretsigning/tls.crt")}"
-  signing_key = "${file("${path.module}/secretsigning/tls.key")}"
+  signing_cert = var.secret_signing_cert
+  signing_key = var.secret_signing_key
 }
