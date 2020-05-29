@@ -36,7 +36,7 @@ module "cd" {
 }
 
 module "secrets" {
-  source = "./secrets"
+  source = "../../secrets"
   signing_cert = var.secret_signing_cert
   signing_key = var.secret_signing_key
 }
