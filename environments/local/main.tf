@@ -34,4 +34,7 @@ module "secrets" {
 
 module "environment" {
   source = "../../envserver"
+  environment_data = {
+    environment = "local"
+  }
 }

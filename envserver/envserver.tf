@@ -1,5 +1,5 @@
 resource "kubernetes_deployment" "envserver" {
-  depends_on = [kubernetes_namespace.environment]
+  depends_on = [kubernetes_namespace.environment, kubernetes_config_map.environment]
 
   metadata {
     name      = "envserver"
@@ -40,14 +40,10 @@ resource "kubernetes_deployment" "envserver" {
             container_port = 8080
           }
 
-          env {
-            name = "POD_NAMESPACE"
-
-            value_from {
-              field_ref {
-                field_path = "metadata.namespace"
+          env_from {
+              config_map_ref {
+                  name = "environment"
               }
-            }
           }
 
           liveness_probe {

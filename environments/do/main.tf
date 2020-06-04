@@ -47,4 +47,7 @@ variable secret_signing_key {}
 
 module "environment" {
   source = "../../envserver"
+  environment_data = {
+    environment = "digitalocean"
+  }
 }
