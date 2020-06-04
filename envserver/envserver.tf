@@ -94,7 +94,7 @@ resource "kubernetes_service" "envserver" {
   spec {
     port {
       name        = "http"
-      port        = 80
+      port        = 8080
       target_port = "http"
     }
 
