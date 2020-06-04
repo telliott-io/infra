@@ -31,3 +31,7 @@ module "secrets" {
   signing_cert = var.secret_signing_cert
   signing_key = var.secret_signing_key
 }
+
+module "environment" {
+  source = "../../envserver"
+}
