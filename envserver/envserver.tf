@@ -2,11 +2,11 @@ resource "kubernetes_deployment" "envserver" {
   depends_on = [kubernetes_namespace.environment]
 
   metadata {
-    name      = "environment"
+    name      = "envserver"
     namespace = "environment"
 
     labels = {
-      "app" = "environment"
+      "app" = "envserver"
     }
   }
 
@@ -15,14 +15,14 @@ resource "kubernetes_deployment" "envserver" {
 
     selector {
       match_labels = {
-        "app" = "environment"
+        "app" = "envserver"
       }
     }
 
     template {
       metadata {
         labels = {
-          "app" = "environment"
+          "app" = "envserver"
         }
 
         annotations = {
