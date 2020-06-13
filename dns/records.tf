@@ -8,7 +8,7 @@ resource "cloudflare_record" "ingress" {
 }
 
 resource "cloudflare_record" "jaeger" {
-  zone_id = "${var.cloudflare_zone_id}"
+  zone_id = var.cloudflare_zone_id
   name    = "jaeger"
   value   = "ingress.${var.domain}"
   type    = "CNAME"
@@ -17,7 +17,7 @@ resource "cloudflare_record" "jaeger" {
 }
 
 resource "cloudflare_record" "prometheus" {
-  zone_id = "${var.cloudflare_zone_id}"
+  zone_id = var.cloudflare_zone_id
   name    = "prometheus"
   value   = "ingress.${var.domain}"
   type    = "CNAME"
@@ -26,7 +26,7 @@ resource "cloudflare_record" "prometheus" {
 }
 
 resource "cloudflare_record" "grafana" {
-  zone_id = "${var.cloudflare_zone_id}"
+  zone_id = var.cloudflare_zone_id
   name    = "grafana"
   value   = "ingress.${var.domain}"
   type    = "CNAME"
@@ -35,7 +35,7 @@ resource "cloudflare_record" "grafana" {
 }
 
 resource "cloudflare_record" "emojicode" {
-  zone_id = "${var.cloudflare_zone_id}"
+  zone_id = var.cloudflare_zone_id
   name    = "emojicode"
   value   = "ingress.${var.domain}"
   type    = "CNAME"
@@ -44,7 +44,7 @@ resource "cloudflare_record" "emojicode" {
 }
 
 resource "cloudflare_record" "argocd" {
-  zone_id = "${var.cloudflare_zone_id}"
+  zone_id = var.cloudflare_zone_id
   name    = "argocd"
   value   = "ingress.${var.domain}"
   type    = "CNAME"
@@ -53,7 +53,7 @@ resource "cloudflare_record" "argocd" {
 }
 
 resource "cloudflare_record" "root" {
-  zone_id = "${var.cloudflare_zone_id}"
+  zone_id = var.cloudflare_zone_id
   name    = "@"
   value   = "ingress.${var.domain}"
   type    = "CNAME"
@@ -62,7 +62,7 @@ resource "cloudflare_record" "root" {
 }
 
 resource "cloudflare_record" "www" {
-  zone_id = "${var.cloudflare_zone_id}"
+  zone_id = var.cloudflare_zone_id
   name    = "www"
   value   = "ingress.${var.domain}"
   type    = "CNAME"
