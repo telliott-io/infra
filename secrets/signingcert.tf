@@ -1,4 +1,5 @@
 resource "kubernetes_secret" "signing-cert" {
+  depends_on = [helm_release.sealed-secrets]
   metadata {
     name = "secret-signing-certs"
     namespace = "secrets"

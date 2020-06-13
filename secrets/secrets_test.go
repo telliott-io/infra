@@ -23,12 +23,12 @@ import (
 	"time"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/telliott-io/infra/testing/kind"
+	"github.com/telliott-io/infra/testing/testdir"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/util/cert"
-	"sigs.k8s.io/kind/pkg/cluster"
-	"sigs.k8s.io/kind/pkg/cmd"
 
 	sealedsecrets "github.com/bitnami-labs/sealed-secrets/pkg/apis/sealed-secrets/v1alpha1"
 
@@ -42,14 +42,19 @@ func TestSigning(t *testing.T) {
 	}
 
 	tfdir := "testdata"
-	workingDirCleanup, err := setupWorkingDir(tfdir)
+	workingDirCleanup, err := testdir.New(tfdir)
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer workingDirCleanup()
 
+	err = ioutil.WriteFile(path.Join(tfdir, "main.tf"), []byte(mainTF), 0644)
+	if err != nil {
+		t.Fatal(err)
+	}
+
 	kubeconfigfile := "kindconfig"
-	kindCleanup, err := createKindCluster(path.Join(tfdir, kubeconfigfile))
+	kindCleanup, err := kind.New("test-kind", path.Join(tfdir, kubeconfigfile))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -71,7 +76,7 @@ func TestSigning(t *testing.T) {
 
 	// At the end of the test, run `terraform destroy`
 	// TODO: Determine why this doesn't work
-	//defer terraform.Destroy(t, terraformOptions)
+	// defer terraform.Destroy(t, terraformOptions)
 
 	// Run `terraform init` and `terraform apply`
 	result := terraform.InitAndApply(t, terraformOptions)
@@ -125,20 +130,6 @@ func TestSigning(t *testing.T) {
 	}
 }
 
-func setupWorkingDir(p string) (func() error, error) {
-	err := os.Mkdir(p, os.ModePerm)
-	if err != nil {
-		return func() error { return nil }, err
-	}
-	err = ioutil.WriteFile(path.Join(p, "main.tf"), []byte(mainTF), 0644)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return func() error {
-		return os.RemoveAll(p)
-	}, nil
-}
-
 func execKubectl(tfdir, kubeconfigfile string, params []string) (string, error) {
 	cmd := exec.Command("kubectl", params...)
 	cmd.Env = []string{
@@ -182,38 +173,6 @@ func parseKey(r io.Reader) (*rsa.PublicKey, error) {
 	}
 
 	return cert, nil
-}
-
-func createKindCluster(kubeConfig string) (func() error, error) {
-	kindProvider := cluster.NewProvider(
-		cluster.ProviderWithLogger(
-			cmd.NewLogger(),
-		),
-	)
-	err := kindProvider.Create(
-		"kind-test",
-		cluster.CreateWithNodeImage("kindest/node:v1.16.9"),
-		cluster.CreateWithRetain(false),
-		cluster.CreateWithWaitForReady(time.Duration(0)),
-		cluster.CreateWithKubeconfigPath(kubeConfig),
-		cluster.CreateWithDisplayUsage(true),
-		cluster.CreateWithDisplaySalutation(true),
-	)
-	if err != nil {
-		return nil, err
-	}
-	return func() error {
-		var errstrings []string
-		err1 := kindProvider.Delete("kind-test", "")
-		if err1 != nil {
-			errstrings = append(errstrings, err1.Error())
-		}
-		err2 := os.Remove(kubeConfig)
-		if err2 != nil {
-			errstrings = append(errstrings, err2.Error())
-		}
-		return fmt.Errorf(strings.Join(errstrings, "\n"))
-	}, nil
 }
 
 func createCerts() (crt string, key string, err error) {

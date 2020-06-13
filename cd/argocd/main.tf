@@ -1,20 +1,10 @@
-resource "kubernetes_namespace" "argocd" {
-  metadata {
-    name = "argocd"
-  }
-
-  timeouts {
-    delete = "2h"
-  }
-}
-
 resource "helm_release" "argocd" {
-  depends_on = [kubernetes_namespace.argocd]
 
   name       = "argo"
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-cd"
   namespace  = "argocd"
+  create_namespace = true
   version    = "2.3.4"
 
   set_sensitive {

@@ -1,15 +1,8 @@
-resource "kubernetes_namespace" "secrets" {
-  metadata {
-    name = "secrets"
-  }
-}
-
 resource "helm_release" "sealed-secrets" {
-  depends_on = [kubernetes_namespace.secrets]
-
   name  = "sealed-secrets-controller"
   chart = "stable/sealed-secrets"
   namespace = "secrets"
+  create_namespace = true
 
   set {
     name = "secretName"
