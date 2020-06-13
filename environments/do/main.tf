@@ -1,22 +1,27 @@
-module "do" {
-  source   = "../../kubernetes/do"
-  name = "primary"
+module "cluster" {
+  source   = "github.com/telliott-io/kube-clusters//digitalocean"
+  cluster_name = var.cluster_name
 }
 
-provider "kubernetes" {
-  load_config_file = false
-  host     = "${module.do.host}"
+variable cluster_name {}
 
-  cluster_ca_certificate = "${module.do.cluster_ca_certificate}"
-  token = "${module.do.token}"
+provider "kubernetes" {
+    load_config_file = false
+    host     = module.cluster.kubernetes.host
+    username = module.cluster.kubernetes.username
+    password = module.cluster.kubernetes.password
+    cluster_ca_certificate = module.cluster.kubernetes.cluster_ca_certificate
+    token = module.cluster.kubernetes.token
 }
 
 provider "helm" {
   kubernetes {
     load_config_file = false
-    host     = "${module.do.host}"
-    cluster_ca_certificate = "${module.do.cluster_ca_certificate}"
-    token = "${module.do.token}"
+    host     = module.cluster.kubernetes.host
+    username = module.cluster.kubernetes.username
+    password = module.cluster.kubernetes.password
+    cluster_ca_certificate = module.cluster.kubernetes.cluster_ca_certificate
+    token = module.cluster.kubernetes.token
   }
 }
 
