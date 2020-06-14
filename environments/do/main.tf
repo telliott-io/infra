@@ -26,7 +26,7 @@ provider "helm" {
 }
 
 module "ingress" {
-  source   = "../../ingress/nginx"
+  source   = "../../modules/ingress/nginx"
 }
 
 output "ingress_address" {
@@ -36,12 +36,12 @@ output "ingress_address" {
 variable argocd_admin_password {}
 
 module "cd" {
-  source   = "../../cd/argocd"
+  source   = "../../modules/cd/argocd"
   argocd_admin_password = var.argocd_admin_password
 }
 
 module "secrets" {
-  source = "../../secrets"
+  source = "../../modules/secrets"
   signing_cert = var.secret_signing_cert
   signing_key = var.secret_signing_key
 }
@@ -51,7 +51,7 @@ variable secret_signing_cert {}
 variable secret_signing_key {}
 
 module "environment" {
-  source = "../../envserver"
+  source = "../../modules/envserver"
   environment_data = {
     environment = "digitalocean"
   }
