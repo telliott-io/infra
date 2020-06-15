@@ -3,7 +3,7 @@
 #####################################################################
 
 module "do" {
-  source   = "./environments/do"
+  source   = "./clouds/do"
   cluster_name = "primary"
   argocd_admin_password = var.argocd_admin_password
   secret_signing_cert = var.secret_signing_cert
