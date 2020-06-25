@@ -1,0 +1,28 @@
+name: 'Deployment'
+on:
+  push:
+      branches:    
+        - master
+jobs:
+  deploy:
+    name: 'Deployment'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Save Credentials'
+        run: ./.github/scripts/save_gcloud_credentials.sh
+        env:
+          GCLOUD_CREDENTIALS_BASE64: ${{ secrets.GCloudCredentialsBase64 }}
+      - name: "Apply"
+        uses: ./.github/actions/terragrunt
+        with:
+          args: apply-all --terragrunt-working-dir terragrunt
+        env:
+          TF_VAR_cloudflare_email: ${{ secrets.CloudflareEmail }}
+          TF_VAR_cloudflare_api_key:  ${{ secrets.CloudflareApiKey }}
+          TF_VAR_cloudflare_zone_id:  ${{ secrets.CloudflareZoneId }}
+          TF_VAR_do_token: ${{ secrets.DigitalOceanToken }}
+          TF_VAR_argocd_admin_password: ${{ secrets.ArgoCDAdminPassword }}
+          TF_VAR_secret_signing_cert: ${{ secrets.SecretSigningCert }}
+          TF_VAR_secret_signing_key: ${{ secrets.SecretSigningKey }} 

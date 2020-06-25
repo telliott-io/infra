@@ -1,0 +1,9 @@
+name: 'terragrunt'
+description: 'Runs terragrunt.'
+author: 'Tom Elliott <tom.w.elliott@gmail.com>'
+branding:
+  icon: 'terminal'
+  color: 'purple'
+runs:
+  using: 'docker'
+  image: './Dockerfile'
