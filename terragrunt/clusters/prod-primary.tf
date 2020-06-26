@@ -1,5 +1,5 @@
 module "prod-primary" {
-  source   = "github.com/telliott-io/kube-clusters//digitalocean"
+  source   = "github.com/telliott-io/kube-clusters//digitalocean?ref=v0.1.0"
   cluster_name = "prod-primary"
 }
 
