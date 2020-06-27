@@ -1,5 +1,5 @@
 resource "kubernetes_secret" "signing-cert" {
-  depends_on = [helm_release.sealed-secrets]
+  depends_on = [kubernetes_namespace.secrets]
   metadata {
     name = "secret-signing-certs"
     namespace = "secrets"
@@ -7,8 +7,6 @@ resource "kubernetes_secret" "signing-cert" {
         "sealedsecrets.bitnami.com/sealed-secrets-key" = "active"
     }
   }
-
-
 
   data = {
     "tls.crt" = var.signing_cert

@@ -118,6 +118,7 @@ func TestSigning(t *testing.T) {
 	// Get new secret value
 	output, err = execKubectl(tfdir, kubeconfigfile, []string{"get", "secret", "mysecret", "-o", "jsonpath=\"{.data.foo}\""})
 	if err != nil {
+		t.Log(output)
 		t.Fatal(err)
 	}
 	encoded := strings.Replace(string(output), "\"", "", 2)
@@ -137,10 +138,7 @@ func execKubectl(tfdir, kubeconfigfile string, params []string) (string, error) 
 	}
 	cmd.Dir = tfdir
 	output, err := cmd.CombinedOutput()
-	if err != nil {
-		return "", err
-	}
-	return string(output), nil
+	return string(output), err
 }
 
 func sealTestSecret(signingCert string) (*sealedsecrets.SealedSecret, error) {
