@@ -8,5 +8,5 @@ dependency "clusters" {
 }
 
 inputs = {
-  config = dependency.clusters.outputs.prod-primary
+  config = dependency.clusters.outputs.do-prod-a
 }
