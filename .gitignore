@@ -3,7 +3,6 @@ gcloud-credentials.json
 
 # Act configuration
 .actrc
-.actenv
 tls.crt
 tls.key
 
