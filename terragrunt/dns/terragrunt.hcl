@@ -3,7 +3,7 @@ include {
 }
 
 dependency "primary" {
-  config_path = "../prod/do-prod-a"
+  config_path = "../prod/do-b"
 }
 
 inputs = {
