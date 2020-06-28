@@ -177,10 +177,7 @@ func createCerts() (crt string, key string, err error) {
 	ca := &x509.Certificate{
 		SerialNumber: big.NewInt(2019),
 		Subject: pkix.Name{
-			Organization: []string{"telliott.io"},
-			Country:      []string{"US"},
-			Province:     []string{"NY"},
-			Locality:     []string{"New York"},
+			Organization: []string{"Some Org"},
 		},
 		NotBefore:             time.Now(),
 		NotAfter:              time.Now().AddDate(10, 0, 0),
