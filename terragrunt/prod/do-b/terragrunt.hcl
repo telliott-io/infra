@@ -1,6 +1,5 @@
-# stage/mysql/terragrunt.hcl
-include {
-  path = find_in_parent_folders()
+terraform {
+  source = "github.com/telliott-io/infra//modules/configuration"
 }
 
 dependency "clusters" {
@@ -8,5 +7,8 @@ dependency "clusters" {
 }
 
 inputs = {
-  config = dependency.clusters.outputs.prod-do-b
+  kubernetes = dependency.clusters.outputs.prod-do-b
+  environment = "prod-digitalocean-b"
+  bootstrap_repository = "https://telliott-io.github.io/bootstrap"
+  bootstrap_chart = "bootstrap"
 }
