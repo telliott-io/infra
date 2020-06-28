@@ -6,6 +6,8 @@ module "ingress" {
 module "cd" {
   source   = "../cd/argocd"
   argocd_admin_password = var.argocd_admin_password
+  bootstrap_repository = var.bootstrap_repository
+  bootstrap_chart = var.bootstrap_chart
 }
 
 module "secrets" {

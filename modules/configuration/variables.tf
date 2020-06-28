@@ -5,3 +5,6 @@ variable secret_signing_cert {}
 variable secret_signing_key {}
 variable environment {}
 variable hostname {}
+
+variable bootstrap_repository {}
+variable bootstrap_chart {}

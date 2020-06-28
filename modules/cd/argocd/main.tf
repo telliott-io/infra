@@ -28,5 +28,3 @@ resource "helm_release" "argocd" {
     value = false
   }
 }
-
-variable argocd_admin_password {}
