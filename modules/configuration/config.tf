@@ -19,4 +19,5 @@ module "environment" {
   environment_data = {
     environment = var.environment
   }
+  hostname = var.hostname
 }

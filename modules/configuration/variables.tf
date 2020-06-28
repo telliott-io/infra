@@ -4,3 +4,4 @@ variable argocd_admin_password {}
 variable secret_signing_cert {}
 variable secret_signing_key {}
 variable environment {}
+variable hostname {}

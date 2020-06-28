@@ -10,7 +10,7 @@ resource "kubernetes_ingress" "envserver" {
 
   spec {
     rule {
-      host = "telliott.io"
+      host = var.hostname
       http {
         path {
           path = "/environment"

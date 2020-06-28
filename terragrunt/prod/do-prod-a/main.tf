@@ -21,11 +21,14 @@ provider "helm" {
 
 module "config" {
     source = "../../../modules/configuration"
+    hostname = var.hostname
     environment = "digitalocean-prod-primary"
     argocd_admin_password = var.argocd_admin_password
     secret_signing_cert = var.secret_signing_cert
     secret_signing_key = var.secret_signing_key
 }
+
+variable hostname {}
 
 variable argocd_admin_password {}
 # Keypair for use with sealed secrets

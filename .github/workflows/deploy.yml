@@ -19,6 +19,7 @@ jobs:
         with:
           args: apply-all --terragrunt-working-dir terragrunt
         env:
+          TF_VAR_hostname: ${{ secrets.Hostname }}
           TF_VAR_cloudflare_email: ${{ secrets.CloudflareEmail }}
           TF_VAR_cloudflare_api_key:  ${{ secrets.CloudflareApiKey }}
           TF_VAR_cloudflare_zone_id:  ${{ secrets.CloudflareZoneId }}
