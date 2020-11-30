@@ -1,5 +1,5 @@
 module "prod-do-c" {
-  source   = "github.com/telliott-io/kube-clusters//digitalocean?ref=v0.3.0"
+  source   = "github.com/telliott-io/kube-clusters//digitalocean?ref=v0.4.1"
   cluster_name = "prod-do-c"
 }
 
