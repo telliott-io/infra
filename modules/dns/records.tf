@@ -69,3 +69,12 @@ resource "cloudflare_record" "www" {
   ttl     = 1
   proxied = true
 }
+
+resource "cloudflare_record" "tictactoe" {
+  zone_id = var.cloudflare_zone_id
+  name    = "tictactoe"
+  value   = "ingress.${var.domain}"
+  type    = "CNAME"
+  ttl     = 1
+  proxied = true
+}
