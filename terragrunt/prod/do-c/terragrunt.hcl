@@ -3,7 +3,7 @@ include {
 }
 
 terraform {
-  source = "github.com/telliott-io/platform?ref=v0.3.3"
+  source = "github.com/telliott-io/platform?ref=v0.3.4"
 }
 
 dependency "clusters" {
