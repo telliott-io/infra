@@ -26,7 +26,7 @@ EOF
 
 generate "gke-provider" {
   path = "gke-provider.tf"
-  if_exists "overwrite_terragrunt"
+  if_exists = "overwrite_terragrunt"
   contents = <<EOF
 provider "google" {
   credentials = base64decode(var.gcloud_credentials_base64)
