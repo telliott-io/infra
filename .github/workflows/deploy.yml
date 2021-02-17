@@ -27,3 +27,4 @@ jobs:
           TF_VAR_argocd_admin_password: ${{ secrets.ArgoCDAdminPassword }}
           TF_VAR_secret_signing_cert: ${{ secrets.SecretSigningCert }}
           TF_VAR_secret_signing_key: ${{ secrets.SecretSigningKey }} 
+          TF_VAR_gcloud_credentials_base64: ${{ secrets.GCloudCredentialsBase4 }}

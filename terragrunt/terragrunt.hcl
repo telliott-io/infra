@@ -24,6 +24,21 @@ variable cloudflare_api_key {}
 EOF
 }
 
+generate "gke-provider" {
+  path = "gke-provider.tf"
+  if_exists "overwrite_terragrunt"
+  contents = <<EOF
+provider "google" {
+  credentials = base64decode(var.gcloud_credentials_base64)
+  project     = "telliott-io"
+  region      = "us-central1"
+  zone        = "us-central1-c"
+}
+
+variable "gcloud_credentials_base64" {}
+EOF
+}
+
 generate "do-provider" {
   path = "do-provider.tf"
   if_exists = "overwrite_terragrunt"
