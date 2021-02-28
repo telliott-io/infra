@@ -1,12 +1,12 @@
 
-module "site1cluster" {
+module "cluster" {
   source   = "github.com/telliott-io/kube-clusters//digitalocean?ref=v0.6.1"
   cluster_name = "site1"
 }
 
-module "site1platform" {
+module "platform" {
   source = "github.com/telliott-io/platform?ref=v0.6.0"
-	kubernetes = jsonencode(module.site1cluster.kubernetes)
+	kubernetes = jsonencode(module.cluster.kubernetes)
 	environment = "platform-test"
 	hostname = "platform.test"
 	argocd_admin_password = "secret"
