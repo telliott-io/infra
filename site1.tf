@@ -12,6 +12,10 @@ resource "tfe_workspace" "site1platform" {
 	  identifier = "telliott-io/platform"
 	  oauth_token_id = var.vcs_oauth_token_id
   }
+
+  depends_on = [
+    module.site1cluster.kubernetes,
+  ]
 }
 
 resource "tfe_variable" "site1_kubernetes" {
