@@ -6,6 +6,8 @@ module "site1cluster" {
 resource "tfe_workspace" "site1platform" {
   name         = "platform-site1"
   organization = "telliott-io"
+  auto_apply = "true"
+  terraform_version = "0.13.6"
   vcs_repo {
 	  identifier = "telliott-io/platform"
 	  oauth_token_id = var.vcs_oauth_token_id
@@ -75,4 +77,14 @@ resource "tfe_variable" "site1_dns_name" {
   category     = "terraform"
   workspace_id = tfe_workspace.site1platform.id
   description  = "DNS name for site"
+}
+
+data "tfe_workspace_ids" "infra_workspace" {
+  names        = ["infra"]
+  organization = "telliott-io"
+}
+
+resource "tfe_run_trigger" "site1_run_trigger" {
+  workspace_id  = tfe_workspace.site1platform.id
+  sourceable_id = data.tfe_workspace_ids.infra_workspace.ids["infra"]
 }
