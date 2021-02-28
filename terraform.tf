@@ -11,5 +11,9 @@ terraform {
       source = "digitalocean/digitalocean"
       version = "2.5.1"
     }
+    tfe = {
+      source = "hashicorp/tfe"
+      version = "0.24.0"
+    }
   }
 }
