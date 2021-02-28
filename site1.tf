@@ -53,7 +53,7 @@ resource "tfe_variable" "site1_argo_password" {
 
 resource "tfe_variable" "site1_bootstrap_repository" {
   key          = "bootstrap_repository"
-  value        = "https://telliott-io.github.io/testbootstrap"
+  value        = "https://telliott-io.github.io/bootstrap"
   category     = "terraform"
   workspace_id = tfe_workspace.site1platform.id
   description  = "Helm repository for bootstrapping ArgoCD"
@@ -69,7 +69,7 @@ resource "tfe_variable" "site1_bootstrap_chart" {
 
 resource "tfe_variable" "site1_bootstrap_version" {
   key          = "bootstrap_version"
-  value        = "0.1.1"
+  value        = "0.1.3"
   category     = "terraform"
   workspace_id = tfe_workspace.site1platform.id
   description  = "Helm chart version for bootstrapping ArgoCD"
