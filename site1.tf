@@ -45,7 +45,7 @@ resource "tfe_variable" "site1_hostname" {
 
 resource "tfe_variable" "site1_argo_password" {
   key          = "argocd_admin_password"
-  value        = "secret"
+  value        = var.argocd_admin_password
   category     = "terraform"
   workspace_id = tfe_workspace.site1platform.id
   description  = "Password for ArgoCD Admin"
