@@ -1,7 +1,7 @@
 
 module "site2cluster" {
   source   = "github.com/telliott-io/kube-clusters//digitalocean?ref=v0.6.1"
-  cluster_name = "site1"
+  cluster_name = "site2"
 }
 
 module "site2platform" {
