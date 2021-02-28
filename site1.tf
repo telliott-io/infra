@@ -2,7 +2,7 @@ terraform {
     backend "remote" {
         organization = "telliott-io"
         workspaces {
-            name = "infra-dev"
+            name = "infra"
         }
     }
 
@@ -26,10 +26,8 @@ provider "digitalocean" {
 variable "do_token" {}
 
 module "platform" {
-  source = "github.com/telliott-io/platform?ref=v0.5.0"
+  source = "github.com/telliott-io/platform?ref=v0.6.0"
 	kubernetes = jsonencode(module.cluster.kubernetes)
-	secret_signing_cert = var.secret_signing_cert
-	secret_signing_key = var.secret_signing_key
 	environment = "platform-test"
 	hostname = "platform.test"
 	argocd_admin_password = "secret"
@@ -38,9 +36,6 @@ module "platform" {
 	bootstrap_version = "0.1.1"
 	dns_name = var.dns_name
 }
-
-variable secret_signing_cert {}
-variable secret_signing_key {}
 
 variable dns_name {
 	default = null
