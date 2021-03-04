@@ -1,10 +1,12 @@
 terraform {
-    backend "remote" {
-        organization = "telliott-io"
-        workspaces {
-            name = "infra"
-        }
-    }
+  required_version = "0.13.6"
+
+  backend "remote" {
+      organization = "telliott-io"
+      workspaces {
+          name = "infra"
+      }
+  }
 
   required_providers {
     digitalocean = {
