@@ -1,5 +1,5 @@
 module "sitecluster" {
-  source   = "github.com/telliott-io/kube-clusters//digitalocean?ref=v0.6.1"
+  source   = "github.com/telliott-io/kube-clusters//digitalocean?ref=v0.8.0"
   cluster_name = var.cluster_name
 }
 
@@ -73,14 +73,6 @@ resource "tfe_variable" "site_bootstrap_version" {
   category     = "terraform"
   workspace_id = tfe_workspace.siteplatform.id
   description  = "Helm chart version for bootstrapping ArgoCD"
-}
-
-resource "tfe_variable" "site_dns_name" {
-  key          = "dns_name"
-  value        = var.dns_name
-  category     = "terraform"
-  workspace_id = tfe_workspace.siteplatform.id
-  description  = "DNS name for site"
 }
 
 data "tfe_workspace_ids" "infra_workspace" {
