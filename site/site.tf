@@ -69,7 +69,7 @@ resource "tfe_variable" "site_bootstrap_chart" {
 
 resource "tfe_variable" "site_bootstrap_version" {
   key          = "bootstrap_version"
-  value        = "0.1.3"
+  value        = "0.1.4"
   category     = "terraform"
   workspace_id = tfe_workspace.siteplatform.id
   description  = "Helm chart version for bootstrapping ArgoCD"
